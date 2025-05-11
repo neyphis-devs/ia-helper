@@ -1,0 +1,14 @@
+{
+  "fr": {
+    "welcome": "🤖 Bonjour ! Je suis l'assistant IA. Dès que vous aurez expliqué votre souci, je tenterai de vous aider automatiquement !",
+    "transferred": "❌ Je ne peux pas vous aider davantage. {{staffRole}}, merci de prendre le relais !",
+    "failure": "⚠️ L'assistant n'a pas pu terminer correctement. {{devRole}}, merci d'intervenir.",
+    "error": "⚠️ Une erreur est survenue. {{devRole}}, merci d'intervenir."
+  },
+  "en": {
+    "welcome": "🤖 Hello! I’m the AI assistant. Once you explain your issue, I’ll try to help you automatically!",
+    "transferred": "❌ I can't help you further. {{staffRole}}, please take over!",
+    "failure": "⚠️ The assistant could not finish successfully. {{devRole}}, please assist.",
+    "error": "⚠️ An error occurred. {{devRole}}, please assist."
+  }
+}

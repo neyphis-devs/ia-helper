@@ -1,0 +1,10 @@
+{
+    "enabled": true,
+    "apiKey": "YOUR_OPENAI_API_KEY",
+    "assistantKey": "YOUR_ASSISTANT_KEY",
+    "confidenceThreshold": 0.6,
+    "language": "en",
+    "staffRoleId": "STAFF_ROLE_ID",
+    "devRoleId": "DEV_ROLE_ID",
+    "maxIAMessages": 10
+}

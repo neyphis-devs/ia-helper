@@ -1,0 +1,23 @@
+{
+    "name":"Assistant IA",
+    "id":"ia-helper",
+    "version":"1.0.0",
+
+    "startFile":"index.ts",
+    "enabled":true,
+    "priority":0,
+    "events":[],
+
+    "npmDependencies":["openai"],
+    "requiredPlugins":[],
+    "incompatiblePlugins":[],
+
+    "details": {
+        "author": "NEYPHIS",
+        "shortDescription": "An AI assistant that helps users as soon as a ticket is opened.",
+        "longDescription": "This plugin uses the OpenAI API to provide an automatic response when a ticket is opened. If the response is not sufficient, the user can request to speak with a staff member.",
+        "imageUrl": "",
+        "projectUrl": "",
+        "tags": ["ai", "gpt", "assistant", "auto-response"]
+    }
+}
