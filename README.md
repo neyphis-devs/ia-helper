@@ -164,6 +164,35 @@ The **AI Assistant** plugin is designed to provide automated support to users wh
 
 ---
 
+### OpenAI Setup Guide
+
+1. **Create an OpenAI Account**
+
+   * Go to [https://platform.openai.com](https://platform.openai.com) and create an account.
+
+2. **Generate Your API Key**
+
+   * Once logged in, go to your [API Keys section](https://platform.openai.com/account/api-keys).
+   * Click on "Create new secret key". Copy and store it safely — you will not see it again.
+
+3. **Create an Assistant** (for GPT-4 or Function Calling)
+
+   * Navigate to the [Assistants](https://platform.openai.com/assistants) section.
+   * Click **+ Create** and configure:
+
+     * **Name** and **Instructions**: Give a name and set its behavior.
+     * **Model**: Choose a model like `gpt-4o-mini`.
+     * **Tools**: Enable any tools you want (e.g., code interpreter, retrieval).
+     * **Files** (optional): You can upload reference documents.
+   * Save your Assistant. Copy the **Assistant ID**, which will be used in `assistantKey`.
+
+4. **Add Instructions and Documents**
+
+   * In the assistant setup, you can add specific instructions ("You are a support agent helping with Discord ticket issues...").
+   * You can also upload PDF, TXT, DOCX files which will be available to the assistant at runtime for better responses.
+
+---
+
 ### Dependencies
 
 * **OpenAI**: Used to generate AI responses.
