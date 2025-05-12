@@ -66,6 +66,8 @@ opendiscord.events.get("afterTicketMainMessageCreated").listen(async (ticket, ms
 
     const collector = channel.createMessageCollector(); // No time limit
 
+    let isRunActive = false; // Variable pour suivre l'état du run
+
     collector.on("collect", async (msg) => {
         if (msg.author.bot || iaRetired) return;
 
@@ -81,6 +83,11 @@ opendiscord.events.get("afterTicketMainMessageCreated").listen(async (ticket, ms
             try {
                 const fullPrompt = `Always respond in the same language as the user uses.\n\n${systemPrompt}`;
 
+                // Attendre que le run précédent soit terminé
+                while (isRunActive) {
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+
                 await openai.beta.threads.messages.create(thread.id, {
                     role: "assistant",
                     content: fullPrompt
@@ -90,6 +97,7 @@ opendiscord.events.get("afterTicketMainMessageCreated").listen(async (ticket, ms
                     content: msg.content
                 });
 
+                isRunActive = true; // Marquer le run comme actif
                 const run = await openai.beta.threads.runs.create(thread.id, {
                     assistant_id: config.data.assistantKey
                 });
@@ -99,6 +107,8 @@ opendiscord.events.get("afterTicketMainMessageCreated").listen(async (ticket, ms
                     await new Promise(resolve => setTimeout(resolve, 1000));
                     runStatus = await openai.beta.threads.runs.retrieve(thread.id, runStatus.id);
                 }
+
+                isRunActive = false; // Marquer le run comme terminé
 
                 if (runStatus.status === "completed") {
                     const messages = await openai.beta.threads.messages.list(thread.id);
@@ -136,15 +146,16 @@ opendiscord.events.get("afterTicketMainMessageCreated").listen(async (ticket, ms
                 } else {
                     iaRetired = true;
                     await channel.send(getMessage(lang, "failure", {
-                        adminRole: `<@&${config.data.devRoleId}>`
+                        devRole: `<@&${config.data.devRoleId}>`
                     }));
                 }
 
             } catch (err) {
+                isRunActive = false; // Réinitialiser en cas d'erreur
                 iaRetired = true;
                 console.error("[IA-Helper] Error OpenAI:", err);
                 await channel.send(getMessage(lang, "error", {
-                    adminRole: `<@&${config.data.devRoleId}>`
+                    devRole: `<@&${config.data.devRoleId}>`
                 }));
             }
         }
